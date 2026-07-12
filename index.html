@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株式会社北総不動産 | 安心できる住まいを、地域へ。</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2744;
+    --navy-light: #243358;
+    --gold: #b8966a;
+    --gold-light: #d4b896;
+    --cream: #f7f4ef;
+    --white: #ffffff;
+    --gray: #6b7280;
+    --gray-light: #f3f0eb;
+    --text: #2c2c2c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.8;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(26, 39, 68, 0.97);
+    backdrop-filter: blur(8px);
+    padding: 0 40px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(184, 150, 106, 0.3);
+  }
+
+  .logo {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    cursor: pointer;
+  }
+
+  .logo-jp {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--white);
+    letter-spacing: 0.05em;
+  }
+
+  .logo-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 13px;
+    color: var(--gold-light);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  nav {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .nav-btn {
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.8);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 16px;
+    letter-spacing: 0.08em;
+    font-family: 'Noto Sans JP', sans-serif;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 2px; left: 50%;
+    width: 0; height: 1px;
+    background: var(--gold-light);
+    transition: all 0.3s;
+    transform: translateX(-50%);
+  }
+
+  .nav-btn:hover { color: var(--gold-light); }
+  .nav-btn:hover::after { width: 60%; }
+  .nav-btn.active { color: var(--gold-light); }
+  .nav-btn.active::after { width: 60%; }
+
+  .nav-contact {
+    background: var(--gold);
+    color: var(--white);
+    padding: 9px 20px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    margin-left: 8px;
+    transition: background 0.3s;
+  }
+
+  .nav-contact::after { display: none; }
+  .nav-contact:hover { background: var(--gold-light); color: var(--navy); }
+
+  /* ハンバーガー */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    transition: all 0.3s;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ===== PAGE SYSTEM ===== */
+  .page {
+    display: none;
+    animation: pageIn 0.5s ease;
+    min-height: 100vh;
+  }
+
+  .page.active { display: block; }
+
+  @keyframes pageIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== HERO (HOME) ===== */
+  .hero {
+    height: 100vh;
+    min-height: 700px;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 50%, rgba(184,150,106,0.12) 0%, transparent 60%),
+      linear-gradient(135deg, #1a2744 0%, #0d1a35 100%);
+  }
+
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: repeating-linear-gradient(
+      0deg, transparent, transparent 40px,
+      rgba(255,255,255,0.5) 40px, rgba(255,255,255,0.5) 41px
+    ),
+    repeating-linear-gradient(
+      90deg, transparent, transparent 40px,
+      rgba(255,255,255,0.5) 40px, rgba(255,255,255,0.5) 41px
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 60px;
+    padding-top: 70px;
+    width: 100%;
+  }
+
+  .hero-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hero-label::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+    font-size: clamp(36px, 5vw, 62px);
+    color: var(--white);
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    margin-bottom: 32px;
+  }
+
+  .hero-title span {
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    max-width: 480px;
+    line-height: 2;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .badge {
+    border: 1px solid rgba(184,150,106,0.5);
+    color: var(--gold-light);
+    font-size: 11px;
+    padding: 6px 16px;
+    letter-spacing: 0.12em;
+    font-family: 'Noto Serif JP', serif;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    padding: 15px 36px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    font-family: 'Noto Sans JP', sans-serif;
+    transition: all 0.3s;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); color: var(--navy); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.4);
+    cursor: pointer;
+    padding: 15px 36px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    font-family: 'Noto Sans JP', sans-serif;
+    transition: all 0.3s;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
+
+  /* ===== HOME QUICK LINKS ===== */
+  .quicklinks {
+    background: var(--cream);
+    padding: 90px 40px;
+  }
+
+  .quicklinks-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .quicklinks-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .ql-card {
+    background: var(--white);
+    padding: 44px 36px;
+    cursor: pointer;
+    transition: all 0.35s;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid transparent;
+  }
+
+  .ql-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 44px rgba(26,39,68,0.14);
+    border-color: rgba(184,150,106,0.3);
+  }
+
+  .ql-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 20px;
+  }
+
+  .ql-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+
+  .ql-desc {
+    font-size: 13px;
+    color: var(--gray);
+    font-weight: 300;
+    line-height: 1.9;
+    margin-bottom: 24px;
+  }
+
+  .ql-arrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.3s;
+  }
+
+  .ql-card:hover .ql-arrow { gap: 16px; }
+
+  /* ===== SECTIONS COMMON ===== */
+  .page-section { padding: 120px 40px 100px; }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 600;
+    font-size: clamp(28px, 3.5vw, 42px);
+    color: var(--navy);
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+  }
+
+  .section-title-white { color: var(--white); }
+
+  .page-header .section-desc {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 2;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 300;
+  }
+
+  /* ===== STRENGTHS ===== */
+  .strengths-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: #e8e0d5;
+    border: 1px solid #e8e0d5;
+  }
+
+  .strength-card {
+    background: var(--white);
+    padding: 52px 38px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .strength-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.4s ease;
+  }
+
+  .strength-card:hover::before { transform: scaleY(1); }
+
+  .strength-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: rgba(184,150,106,0.25);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .strength-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 14px;
+    letter-spacing: 0.05em;
+  }
+
+  .strength-text {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 2;
+    font-weight: 300;
+  }
+
+  .strengths-cta {
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  /* ===== PROPERTIES ===== */
+  .properties-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  .property-card {
+    border: 1px solid #e8e0d5;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    background: var(--white);
+  }
+
+  .property-card:hover {
+    box-shadow: 0 12px 40px rgba(26,39,68,0.12);
+  }
+
+  .property-img {
+    height: 240px;
+    background: linear-gradient(135deg, var(--navy-light), var(--navy));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .property-img-placeholder {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .property-tag {
+    position: absolute;
+    top: 16px; left: 16px;
+    background: var(--gold);
+    color: var(--white);
+    font-size: 11px;
+    padding: 5px 14px;
+    letter-spacing: 0.1em;
+  }
+
+  .property-body {
+    padding: 32px 34px;
+  }
+
+  .property-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .property-location {
+    font-size: 12px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  .property-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+  }
+
+  .spec {
+    font-size: 12px;
+    color: var(--gray);
+  }
+
+  .spec strong {
+    display: block;
+    font-size: 15px;
+    color: var(--navy);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  /* ===== ABOUT ===== */
+  .about-page {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-page::before {
+    content: '';
+    position: absolute;
+    right: -100px; top: 100px;
+    width: 500px; height: 500px;
+    border: 1px solid rgba(184,150,106,0.1);
+    border-radius: 50%;
+  }
+
+  .about-page::after {
+    content: '';
+    position: absolute;
+    right: -50px; top: 150px;
+    width: 350px; height: 350px;
+    border: 1px solid rgba(184,150,106,0.08);
+    border-radius: 50%;
+  }
+
+  .about-page .section-title { color: var(--white); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    position: relative;
+    z-index: 2;
+  }
+
+  .about-intro-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .about-intro-title {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: var(--white);
+    margin-bottom: 28px;
+    letter-spacing: 0.05em;
+  }
+
+  .about-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    line-height: 2.2;
+    font-weight: 300;
+    margin-bottom: 40px;
+  }
+
+  .certifications {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cert-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 20px;
+    border: 1px solid rgba(184,150,106,0.25);
+    background: rgba(184,150,106,0.05);
+  }
+
+  .cert-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .cert-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    font-weight: 300;
+    letter-spacing: 0.03em;
+  }
+
+  .company-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .company-table tr {
+    border-bottom: 1px solid rgba(184,150,106,0.15);
+  }
+
+  .company-table th {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--gold-light);
+    padding: 16px 0;
+    padding-right: 32px;
+    width: 130px;
+    vertical-align: top;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    text-align: left;
+  }
+
+  .company-table td {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    padding: 16px 0;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  /* ===== SDGs (in About) ===== */
+  .sdgs-block {
+    background: var(--gray-light);
+    padding: 70px 40px;
+  }
+
+  .sdgs-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .sdgs-badge {
+    width: 100px; height: 100px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .sdgs-badge-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+  }
+
+  .sdgs-badge-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--white);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  .sdgs-content h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 19px;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+
+  .sdgs-content p {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 2;
+    font-weight: 300;
+  }
+
+  /* ===== CONTACT ===== */
+  .contact-page {
+    background: var(--cream);
+  }
+
+  .contact-box {
+    max-width: 620px;
+    margin: 0 auto;
+    background: var(--white);
+    border: 1px solid #e8e0d5;
+    padding: 64px 52px;
+    position: relative;
+    text-align: center;
+  }
+
+  .contact-box::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 50px;
+    width: 60px; height: 2px;
+    background: var(--gold);
+  }
+
+  .contact-lead {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 20px;
+    color: var(--navy);
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  .contact-desc {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 2;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .contact-email-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .contact-email {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--navy);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    margin-bottom: 12px;
+    transition: color 0.3s;
+    border-bottom: 1px solid transparent;
+  }
+
+  .contact-email:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+  .contact-email-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--white);
+    padding: 14px 40px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    margin: 20px 0 36px;
+    transition: background 0.3s;
+  }
+
+  .contact-email-btn:hover { background: var(--gold-light); color: var(--navy); }
+
+  .contact-offices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #e8e0d5;
+    border: 1px solid #e8e0d5;
+    margin-top: 8px;
+    text-align: left;
+  }
+
+  .office {
+    background: var(--white);
+    padding: 24px 26px;
+  }
+
+  .office-label {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    color: var(--gold);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .office-detail {
+    font-size: 12px;
+    color: var(--gray);
+    line-height: 1.9;
+    font-weight: 300;
+  }
+
+  .contact-tel {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid #e8e0d5;
+    font-size: 13px;
+    color: var(--gray);
+    font-weight: 300;
+  }
+
+  .contact-tel strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--navy);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--navy);
+    padding: 50px 40px 30px;
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo .logo-jp { font-size: 16px; }
+
+  .footer-mission {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 8px;
+    letter-spacing: 0.05em;
+    font-weight: 300;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links button {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+  }
+
+  .footer-links button:hover { color: var(--gold-light); }
+
+  .footer-copy {
+    max-width: 1100px;
+    margin: 24px auto 0;
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 768px) {
+    header { padding: 0 20px; }
+
+    nav {
+      position: fixed;
+      top: 70px; left: 0; right: 0;
+      background: rgba(26, 39, 68, 0.99);
+      flex-direction: column;
+      gap: 0;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(184,150,106,0.3);
+      transform: translateY(-120%);
+      transition: transform 0.35s ease;
+      align-items: stretch;
+    }
+
+    nav.open { transform: translateY(0); }
+
+    .nav-btn {
+      padding: 16px 24px;
+      text-align: left;
+      font-size: 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-btn::after { display: none; }
+
+    .nav-contact {
+      margin: 12px 24px 4px;
+      text-align: center;
+      padding: 14px;
+    }
+
+    .hamburger { display: flex; }
+
+    .hero-content { padding: 0 24px; padding-top: 70px; }
+    .page-section { padding: 100px 24px 70px; }
+    .quicklinks { padding: 60px 24px; }
+    .quicklinks-grid { grid-template-columns: 1fr; gap: 16px; }
+    .strengths-grid { grid-template-columns: 1fr; }
+    .properties-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .sdgs-inner { flex-direction: column; gap: 32px; text-align: center; }
+    .sdgs-block { padding: 50px 24px; }
+    .contact-box { padding: 44px 28px; }
+    .contact-offices { grid-template-columns: 1fr; }
+    .footer-inner { flex-direction: column; }
+    .hero-cta { flex-direction: column; }
+    .btn-primary, .btn-outline { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo" onclick="showPage('home')">
+    <span class="logo-jp">株式会社北総不動産</span>
+    <span class="logo-en">Hokuso Real Estate</span>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="nav">
+    <button class="nav-btn" data-page="home" onclick="showPage('home')">ホーム</button>
+    <button class="nav-btn" data-page="strengths" onclick="showPage('strengths')">強み</button>
+    <button class="nav-btn" data-page="properties" onclick="showPage('properties')">保有物件</button>
+    <button class="nav-btn" data-page="about" onclick="showPage('about')">会社概要</button>
+    <button class="nav-btn nav-contact" data-page="contact" onclick="showPage('contact')">お問い合わせ</button>
+  </nav>
+</header>
+
+<!-- ============ HOME PAGE ============ -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-content">
+      <div class="hero-label">Hokuso Real Estate</div>
+      <h1 class="hero-title">
+        安心できる住まいを、<br>
+        <span>地域へ。未来へ。</span>
+      </h1>
+      <p class="hero-sub">
+        築浅物件の安定運営から築古アパートの再生まで。<br>
+        地域に必要とされる住環境を、誠実に提供してまいります。
+      </p>
+      <div class="hero-badges">
+        <span class="badge">ちばSDGsパートナー No.2453</span>
+        <span class="badge">佐原商工会議所 会員</span>
+        <span class="badge">香取創業塾 修了</span>
+      </div>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="showPage('properties')">保有物件を見る</button>
+        <button class="btn-outline" onclick="showPage('contact')">お問い合わせ</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="quicklinks">
+    <div class="quicklinks-inner">
+      <div class="quicklinks-grid">
+        <div class="ql-card" onclick="showPage('strengths')">
+          <div class="ql-num">01</div>
+          <div class="ql-title">私たちの強み</div>
+          <p class="ql-desc">築古再生・空室対策・多様な入居者受け入れ。北総不動産ならではの3つの強みをご紹介します。</p>
+          <div class="ql-arrow">詳しく見る →</div>
+        </div>
+        <div class="ql-card" onclick="showPage('properties')">
+          <div class="ql-num">02</div>
+          <div class="ql-title">保有物件</div>
+          <p class="ql-desc">愛知県を中心に運営するアパートをご紹介。安定収益と入居率向上を両立しています。</p>
+          <div class="ql-arrow">詳しく見る →</div>
+        </div>
+        <div class="ql-card" onclick="showPage('about')">
+          <div class="ql-num">03</div>
+          <div class="ql-title">会社概要</div>
+          <p class="ql-desc">設立の経緯から沿革、SDGsへの取り組みまで。会社の全体像をご覧いただけます。</p>
+          <div class="ql-arrow">詳しく見る →</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ STRENGTHS PAGE ============ -->
+<div class="page" id="page-strengths">
+  <section class="page-section">
+    <div class="section-inner">
+      <div class="page-header">
+        <div class="section-label">Our Strengths</div>
+        <h2 class="section-title">北総不動産の強み</h2>
+        <p class="section-desc">
+          個人事業で培った賃貸経営の実績とノウハウを活かし、エリア特性に応じた柔軟な不動産運営を展開しています。
+        </p>
+      </div>
+      <div class="strengths-grid">
+        <div class="strength-card">
+          <div class="strength-num">01</div>
+          <div class="strength-title">築古物件の再生力</div>
+          <p class="strength-text">老朽化した物件をリフォームにより競争力ある住環境へと再生。既存ストックの有効活用により地域の住宅課題に貢献します。廃材削減や資源活用にも配慮し、持続可能な形で物件価値を高めています。</p>
+        </div>
+        <div class="strength-card">
+          <div class="strength-num">02</div>
+          <div class="strength-title">適正賃料・空室対策</div>
+          <p class="strength-text">AI賃料査定・管理会社との密な連携・フリーレント設定など、市場実態に即した戦略的な入居促進を行います。データに基づく適正な賃料設定で、早期の空室解消と稼働率改善を実現します。</p>
+        </div>
+        <div class="strength-card">
+          <div class="strength-num">03</div>
+          <div class="strength-title">幅広い受け入れ対応</div>
+          <p class="strength-text">単身者・高齢者・外国人就労者など多様な入居ニーズに対応。住まいの選択肢拡大と地域コミュニティの活性化に寄与します。誰もが安心して暮らせる住環境づくりを大切にしています。</p>
+        </div>
+      </div>
+      <div class="strengths-cta">
+        <button class="btn-primary" onclick="showPage('contact')" style="background:var(--navy);">お問い合わせはこちら</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ PROPERTIES PAGE ============ -->
+<div class="page" id="page-properties">
+  <section class="page-section">
+    <div class="section-inner">
+      <div class="page-header">
+        <div class="section-label">Properties</div>
+        <h2 class="section-title">保有物件</h2>
+        <p class="section-desc">
+          安定した収益基盤と入居率向上を両立する物件を、遠隔地を含めて運営しています。
+        </p>
+      </div>
+      <div class="properties-grid">
+        <div class="property-card">
+          <div class="property-img">
+            <span class="property-img-placeholder">Photo Coming Soon</span>
+            <span class="property-tag">運営中</span>
+          </div>
+          <div class="property-body">
+            <div class="property-name">マーリエ名古屋南</div>
+            <div class="property-location">📍 愛知県名古屋市南区源兵衛町</div>
+            <div class="property-specs">
+              <div class="spec"><strong>木造 2階建</strong>構造</div>
+              <div class="spec"><strong>築9年</strong>築年数</div>
+              <div class="spec"><strong>1R × 8戸</strong>間取り</div>
+              <div class="spec"><strong>柴田駅 徒歩11分</strong>アクセス</div>
+            </div>
+          </div>
+        </div>
+        <div class="property-card">
+          <div class="property-img">
+            <span class="property-img-placeholder">Photo Coming Soon</span>
+            <span class="property-tag">再生中</span>
+          </div>
+          <div class="property-body">
+            <div class="property-name">奥田アパートメント２</div>
+            <div class="property-location">📍 愛知県知多郡美浜町奥田</div>
+            <div class="property-specs">
+              <div class="spec"><strong>木造 2階建</strong>構造</div>
+              <div class="spec"><strong>築42年・全室リフォーム済</strong>築年数</div>
+              <div class="spec"><strong>1K × 17戸</strong>間取り</div>
+              <div class="spec"><strong>野間駅 徒歩14分</strong>アクセス</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ ABOUT PAGE ============ -->
+<div class="page" id="page-about">
+  <section class="page-section about-page">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div>
+          <div class="about-intro-label">About Us</div>
+          <h2 class="about-intro-title">会社概要</h2>
+          <p class="about-desc">
+            幼少期より父が営むクリーニング業を通じて事業経営に触れ、将来自ら事業を行いたい思いを持ち続けてまいりました。商業高校で培った簿記知識と社会人経験を活かし、地域に必要とされる住まいを提供できる分野として不動産賃貸業を開始。運営実績と手応えを得たことから、令和6年12月に株式会社北総不動産を設立しました。今後は法人主体で健全な経営基盤を築き、着実な事業拡大を目指してまいります。
+          </p>
+          <div class="certifications">
+            <div class="cert-item">
+              <div class="cert-dot"></div>
+              <span class="cert-text">令和6年12月　認定特定創業支援等事業「香取創業塾」受講</span>
+            </div>
+            <div class="cert-item">
+              <div class="cert-dot"></div>
+              <span class="cert-text">令和6年12月　株式会社北総不動産 設立（資本金500万円）</span>
+            </div>
+            <div class="cert-item">
+              <div class="cert-dot"></div>
+              <span class="cert-text">令和7年3月　ちばSDGsパートナー登録（登録番号2453号）</span>
+            </div>
+            <div class="cert-item">
+              <div class="cert-dot"></div>
+              <span class="cert-text">令和7年6月　佐原商工会議所 会員登録</span>
+            </div>
+            <div class="cert-item">
+              <div class="cert-dot"></div>
+              <span class="cert-text">令和8年7月　名古屋支店 開設（愛知県名古屋市中区栄一丁目22番2号）</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <table class="company-table">
+            <tr><th>会社名</th><td>株式会社北総不動産</td></tr>
+            <tr><th>代表取締役</th><td>平津 直樹</td></tr>
+            <tr><th>設立</th><td>令和6年12月23日</td></tr>
+            <tr><th>資本金</th><td>500万円</td></tr>
+            <tr><th>本社</th><td>〒287-0815<br>千葉県香取市八筋川3072-2</td></tr>
+            <tr><th>名古屋支店</th><td>〒460-0008<br>愛知県名古屋市中区栄一丁目22番2号</td></tr>
+            <tr><th>TEL</th><td>070-9177-7031</td></tr>
+            <tr><th>E-mail</th><td>hironao6100@gmail.com</td></tr>
+            <tr><th>事業内容</th><td>不動産賃貸業<br>不動産管理・運営業</td></tr>
+            <tr><th>保有物件</th><td>アパート2棟（愛知県）<br>その他複数物件</td></tr>
+            <tr><th>認定・登録</th><td>ちばSDGsパートナー No.2453<br>佐原商工会議所 会員</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sdgs-block">
+    <div class="sdgs-inner">
+      <div class="sdgs-badge">
+        <span class="sdgs-badge-text">ちば</span>
+        <span class="sdgs-badge-num">SDGs</span>
+        <span class="sdgs-badge-text">Partner</span>
+      </div>
+      <div class="sdgs-content">
+        <h3>持続可能な賃貸経営への取り組み</h3>
+        <p>
+          千葉県「ちばSDGsパートナー」（登録番号2453号）として認定を受けております。築古物件の再生による既存ストックの有効活用・廃材削減、高齢者・外国人など多様な入居者受け入れによる地域コミュニティの活性化など、SDGsの観点を取り入れた持続可能な賃貸経営を推進しています。
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ CONTACT PAGE ============ -->
+<div class="page" id="page-contact">
+  <section class="page-section contact-page">
+    <div class="section-inner">
+      <div class="page-header">
+        <div class="section-label">Contact</div>
+        <h2 class="section-title">お問い合わせ</h2>
+      </div>
+      <div class="contact-box">
+        <p class="contact-lead">お気軽にご連絡ください</p>
+        <p class="contact-desc">
+          物件に関するご相談、取引・連携のご提案など、<br>
+          下記メールアドレスまでお問い合わせください。<br>
+          通常2営業日以内にご返信いたします。
+        </p>
+        <div class="contact-email-label">Mail Address</div>
+        <a href="mailto:hironao6100@gmail.com" class="contact-email">hironao6100@gmail.com</a>
+        <br>
+        <a href="mailto:hironao6100@gmail.com" class="contact-email-btn">メールを送る</a>
+
+        <div class="contact-offices">
+          <div class="office">
+            <div class="office-label">本社</div>
+            <div class="office-detail">
+              〒287-0815<br>
+              千葉県香取市八筋川3072-2
+            </div>
+          </div>
+          <div class="office">
+            <div class="office-label">名古屋支店</div>
+            <div class="office-detail">
+              〒460-0008<br>
+              愛知県名古屋市中区栄一丁目22番2号
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-tel">
+          お電話でのお問い合わせ　<strong>070-9177-7031</strong><br>
+          代表取締役　平津 直樹
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div class="logo" onclick="showPage('home')">
+        <span class="logo-jp">株式会社北総不動産</span>
+      </div>
+      <div class="footer-mission">持続可能な地域社会の発展を支え、人と地域を結びつける</div>
+    </div>
+    <div class="footer-links">
+      <button onclick="showPage('home')">ホーム</button>
+      <button onclick="showPage('strengths')">強み</button>
+      <button onclick="showPage('properties')">保有物件</button>
+      <button onclick="showPage('about')">会社概要</button>
+      <button onclick="showPage('contact')">お問い合わせ</button>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 株式会社北総不動産 All Rights Reserved. ｜ 本社：千葉県香取市　名古屋支店：愛知県名古屋市中区栄</div>
+</footer>
+
+<script>
+  function showPage(pageId) {
+    // すべてのページを非表示
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    // 選択ページを表示
+    const target = document.getElementById('page-' + pageId);
+    if (target) target.classList.add('active');
+
+    // ナビのアクティブ状態を更新
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.nav-btn[data-page="' + pageId + '"]').forEach(b => b.classList.add('active'));
+
+    // ページ最上部へスクロール
+    window.scrollTo({ top: 0, behavior: 'instant' });
+
+    // モバイルメニューを閉じる
+    closeMenu();
+  }
+
+  function toggleMenu() {
+    document.getElementById('nav').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('open');
+  }
+
+  function closeMenu() {
+    document.getElementById('nav').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+</script>
+
+</body>
+</html>
